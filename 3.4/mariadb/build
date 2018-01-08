@@ -1,0 +1,1 @@
+docker build . -t spakarl/bolt:latest;docker run -it spakarl/bolt /bin/bash
