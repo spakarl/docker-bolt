@@ -1,5 +1,5 @@
 {
-    "name": "rossriley/docker-bolt",
+    "name": "spakarl/docker-bolt",
     "require": {
         "bolt/bolt": "^3.4"
     },
@@ -7,6 +7,10 @@
         {
             "name": "Ross Riley",
             "email": "riley.ross@gmail.com"
+        },
+        {
+            "name": "Karlheinz Späth",
+            "email": "karlheinz.spaeth@gmail.com"
         }
     ],
     "minimum-stability": "beta",

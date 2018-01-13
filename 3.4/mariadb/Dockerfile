@@ -14,16 +14,19 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN a2enmod headers
 RUN a2enmod rewrite
 
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
-
 # Copy across the local files to the root directory
 ADD html /var/www/html/
-# ADD ./server/apache-vhost.conf /etc/apache2/sites-enabled/
-# RUN rm /etc/apache2/sites-enabled/000-default.conf
-# ADD ./server/php-config.ini /usr/local/etc/php/conf.d/php-config.ini
-# RUN chmod +x /var/www/html/start.sh
+ADD ./server/php-config.ini /usr/local/etc/php/conf.d/php-config.ini
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
+RUN cd /var/www/html && composer install
 
-# RUN cd /var/www/html && composer install
+ADD ./server/apache-vhost.conf /etc/apache2/sites-available/001-bolt.conf
+RUN a2dissite 000-default \
+ && a2ensite  001-bolt
 
-# # CMD ["/var/www/html/start.sh"]
+ADD start-bolt.sh /usr/bin
+RUN chmod +x /usr/bin/start-bolt.sh
+
+
+CMD ["start-bolt.sh"]
