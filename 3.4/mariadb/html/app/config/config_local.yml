@@ -1,6 +1,15 @@
 database:
-    driver: mysql
-    host: mysql
-    username: %APP_USER%
-    password: %APP_PASSWORD%
-    databasename: %APP_USER%
+    driver: %DB_DRIVER%
+    host: %DB_HOST%
+    username: %DB_USER%
+    password: %DB_PASSWORD%
+    databasename: %DB_USER%
+    port: %DB_PORT%
+
+locale: de_DE
+
+timezone: Europe/Berlin
+
+strict_variables: true
+
+
